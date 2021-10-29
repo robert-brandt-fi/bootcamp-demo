@@ -1,0 +1,78 @@
+<div>
+
+  <h2>Angular Display Data from Json File Example</h2>
+
+  <table class="table table-condensed table-striped table-hover">
+    <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Volume</th>
+          <th>Wavg</th>
+          <th>Avg</th>
+          <th>Min</th>
+          <th>Max</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let marketResponse of marketResponses">
+
+        <td>
+          <div>
+            Buy
+          </div>
+          <div>
+            Sell
+          </div>
+        </td>
+
+        <td></td>
+
+        <td>
+          <div>
+            {{ marketResponse.buy.volume }}
+          </div>
+          <div>
+            {{ marketResponse.sell.volume }}
+          </div>
+        </td>
+
+        <td>
+          <div>
+            {{ marketResponse.buy.wavg }}
+          </div>
+          <div>
+            {{ marketResponse.sell.wavg }}
+          </div>
+        </td>
+
+        <td>
+          <div>
+            {{ marketResponse.buy.avg }}
+          </div>
+          <div>
+            {{ marketResponse.sell.avg }}
+          </div>
+        </td>
+
+        <td>
+          <div>
+            {{ marketResponse.buy.min }}
+          </div>
+          <div>
+            {{ marketResponse.sell.min }}
+          </div>
+        </td>
+
+        <td>
+          <div>
+            {{ marketResponse.buy.max }}
+          </div>
+          <div>
+            {{ marketResponse.sell.max }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
