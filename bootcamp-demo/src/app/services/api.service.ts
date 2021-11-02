@@ -34,13 +34,16 @@ export class ApiService {
       this.marketResponses = new BehaviorSubject<MarketResponse[]>([]);
     }
 
+    // Here we dynamically build the URL based on the selected items' IDs.
     public urlBuilder(itemNames: string[], endpoint: string): string {
         let url = this.baseUrl + this.endpoints.get(endpoint) + "?typeid=";
 
+        // So we can fetch data on multiple items, we append each item and a comma to the URL.
         itemNames.forEach(item => {
             url += this.nameToId.get(item) + ",";
         });
 
+        // However, we need to remove the last comma to make the API call work.
         url = url.slice(0, -1);
         console.log(url);
 
@@ -50,16 +53,25 @@ export class ApiService {
     public marketStatCall(itemNames: string[], endpoint: string){
       let url = this.urlBuilder(itemNames, endpoint);
 
+      // We receive the API response.
       this.http.get<MarketResponse>(url)
-        .pipe(take(1))
+        // Connection only takes one response and then closes to preserve resources.
+        .pipe(take(1)) 
         .subscribe(response => {
           let index = 0;
-          response.forEach( marketItem => {
+          /**  
+           * Because the API data does not contain the name of the item,
+           * we need to insert the name into the API JSON data we receive.
+           * To accurately do this, we need to count the index of the
+           * data and insert the correct name into the JSON data.
+          */
+          response.forEach(marketItem => {
             marketItem.name = itemNames[index];
             index++;
           })
+
           this.marketResponses.next(response);
-          console.log(response);
+          // console.log("Response:", response);
         });
     }
 

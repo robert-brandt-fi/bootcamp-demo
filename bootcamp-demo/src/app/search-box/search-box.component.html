@@ -1,15 +1,16 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Commodity</mat-label>
+<form class="search-box-form">
+  <mat-form-field class="search-box-full-width" appearance="fill">
+    <mat-label class="search-box-label">Commodity</mat-label>
     <input type="text"
-           placeholder="Veldspar"
-           aria-label="Commodity"
-           matInput
-           [formControl]="searchControl"
-           [matAutocomplete]="auto">
+          class="search-box"
+          placeholder="Veldspar"
+          aria-label="Commodity"
+          matInput
+          [formControl]="searchControl"
+          [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
+        {{ option }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

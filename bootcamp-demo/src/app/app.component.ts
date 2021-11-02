@@ -23,11 +23,13 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnInit() {
     this.apiService.marketStatCall(["Veldspar", "Scordite"], "Marketstat");
 
+    // Subscribe to the service that retrieves API data until the program closes, then destroy connection.
     this.apiService.getMarketResponse().pipe(takeUntil(this.destroy)).subscribe(marketResponses => {
       this.marketResponses = marketResponses;
     });
   }
 
+  // Kill the subscribed services.
   ngOnDestroy() {
     this.destroy.next();
     this.destroy.complete();
