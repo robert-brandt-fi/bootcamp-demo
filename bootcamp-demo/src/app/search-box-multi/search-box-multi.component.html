@@ -1,0 +1,28 @@
+<mat-form-field class="search-box-full-width" appearance="fill">
+  <mat-label class="search-box-label">Commodity</mat-label>
+  <mat-chip-list #chipList aria-label="commodity selection">
+    <mat-chip
+      *ngFor="let commodity of commodities"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(commodity)">
+      {{ commodity }}
+      <button matChipRemove *ngIf="removable">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      placeholder="New commodity..."
+      #commodityInput
+      [formControl]="commodityCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
+      {{ commodity }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
