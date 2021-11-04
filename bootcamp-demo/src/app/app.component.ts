@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 
-import { MarketItem as MarketResponse } from './models/market_stats';
+import { MarketItem as MarketResponse } from './models/market-stats';
 import { Subject } from "rxjs";
 import {takeUntil} from "rxjs/operators";
 
@@ -21,7 +21,12 @@ export class AppComponent implements OnInit, OnDestroy{
     ) { };
 
   ngOnInit() {
-    this.apiService.marketStatCall(["Veldspar", "Scordite"], "Marketstat");
+  }
+
+  makeMarketStatCall(requestedItem: string) {
+    let requestedItemsArray: string[] = [];
+    requestedItemsArray.push(requestedItem);
+    this.apiService.marketStatCall(requestedItemsArray, "Marketstat");
 
     // Subscribe to the service that retrieves API data until the program closes, then destroy connection.
     this.apiService.getMarketResponse().pipe(takeUntil(this.destroy)).subscribe(marketResponses => {

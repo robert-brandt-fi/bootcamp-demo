@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import {MarketItem as MarketResponse} from "../models/market_stats";
-import {take} from "rxjs/operators";
-import {BehaviorSubject, Observable} from "rxjs";
+import { MarketItem as MarketResponse } from "../models/market-stats";
+import { take } from "rxjs/operators";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable()
 export class ApiService {
@@ -10,18 +10,25 @@ export class ApiService {
     private baseUrl = 'https://api.evemarketer.com/ec/';
     private marketResponses: BehaviorSubject<MarketResponse[]>;
 
+    // TODO: Use .csv file data instead
     private nameToId = new Map([
         ["Veldspar", 1230],
         ["Scordite", 570],
         ["Pyroxeres", 1224],
-        ["Plagioclase", 18]
-    ]);
-
-    private idToName = new Map([
-        [1230, "Veldspar"],
-        [570, "Scordite"],
-        [1224, "Pyroxeres"],
-        [18, "Plagioclase"]
+        ["Plagioclase", 18],
+        ["Factory Folder",28],
+        ["Tritanium",34],
+        ["Pyerite",35],
+        ["Mexallon",36],
+        ["Isogen",37],
+        ["Nocxium",38],
+        ["Zydrine",39],
+        ["Megacyte",40],
+        ["Garbage",41],
+        ["Spiced Wine",42],
+        ["Antibiotics",43],
+        ["Enriched Uranium",44],
+        ["Frozen Plant Seeds",45]
     ]);
 
     private endpoints = new Map([
@@ -71,11 +78,15 @@ export class ApiService {
           })
 
           this.marketResponses.next(response);
-          // console.log("Response:", response);
         });
     }
 
     public getMarketResponse(): Observable<MarketResponse[]> {
       return this.marketResponses.asObservable();
+    }
+
+    public getItemNames(): string[] {
+      // Get all keys (item names) from nameToId map.
+      return [...this.nameToId.keys()];
     }
 }

@@ -7,7 +7,8 @@
           aria-label="Commodity"
           matInput
           [formControl]="searchControl"
-          [matAutocomplete]="auto">
+          [matAutocomplete]="auto"
+          (keydown.enter)="search($event)">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{ option }}
