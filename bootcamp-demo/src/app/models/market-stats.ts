@@ -1,6 +1,7 @@
 export interface MarketItem extends Array<MarketItem> {
     buy: TypeStat;
     sell: TypeStat;
+    name?: string;
 }
 
 export interface TypeStat {

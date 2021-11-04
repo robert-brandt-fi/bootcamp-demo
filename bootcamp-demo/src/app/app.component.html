@@ -1,78 +1,87 @@
-<div>
+<div class="app-container">
+  <div class="content-container">
+  
+    <h2>Fetch Market Data from EVE Market API</h2>
 
-  <h2>Angular Display Data from Json File Example</h2>
+    <table class="table table-condensed table-striped table-hover table-border">
+      <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Volume</th>
+            <th>Weighted Avg</th>
+            <th>Avg</th>
+            <th>Min</th>
+            <th>Max</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let marketResponse of marketResponses">
 
-  <table class="table table-condensed table-striped table-hover">
-    <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Volume</th>
-          <th>Wavg</th>
-          <th>Avg</th>
-          <th>Min</th>
-          <th>Max</th>
+          <td>
+            <div>
+              Buy
+            </div>
+            <div>
+              Sell
+            </div>
+          </td>
+          
+          <td>
+            {{ marketResponse.name }}
+          </td>
+
+          <td>
+            <div>
+              {{ marketResponse.buy.volume }}
+            </div>
+            <div>
+              {{ marketResponse.sell.volume }}
+            </div>
+          </td>
+
+          <td>
+            <div>
+              {{ marketResponse.buy.wavg }}
+            </div>
+            <div>
+              {{ marketResponse.sell.wavg }}
+            </div>
+          </td>
+
+          <td>
+            <div>
+              {{ marketResponse.buy.avg }}
+            </div>
+            <div>
+              {{ marketResponse.sell.avg }}
+            </div>
+          </td>
+
+          <td>
+            <div>
+              {{ marketResponse.buy.min }}
+            </div>
+            <div>
+              {{ marketResponse.sell.min }}
+            </div>
+          </td>
+
+          <td>
+            <div>
+              {{ marketResponse.buy.max }}
+            </div>
+            <div>
+              {{ marketResponse.sell.max }}
+            </div>
+          </td>
         </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let marketResponse of marketResponses">
+      </tbody>
+    </table>
 
-        <td>
-          <div>
-            Buy
-          </div>
-          <div>
-            Sell
-          </div>
-        </td>
-
-        <td></td>
-
-        <td>
-          <div>
-            {{ marketResponse.buy.volume }}
-          </div>
-          <div>
-            {{ marketResponse.sell.volume }}
-          </div>
-        </td>
-
-        <td>
-          <div>
-            {{ marketResponse.buy.wavg }}
-          </div>
-          <div>
-            {{ marketResponse.sell.wavg }}
-          </div>
-        </td>
-
-        <td>
-          <div>
-            {{ marketResponse.buy.avg }}
-          </div>
-          <div>
-            {{ marketResponse.sell.avg }}
-          </div>
-        </td>
-
-        <td>
-          <div>
-            {{ marketResponse.buy.min }}
-          </div>
-          <div>
-            {{ marketResponse.sell.min }}
-          </div>
-        </td>
-
-        <td>
-          <div>
-            {{ marketResponse.buy.max }}
-          </div>
-          <div>
-            {{ marketResponse.sell.max }}
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="search-box-container">
+      <search-box-component class="search-box" (name)="makeMarketStatCall($event)"></search-box-component>
+    </div>
+    
+  </div>
 </div>

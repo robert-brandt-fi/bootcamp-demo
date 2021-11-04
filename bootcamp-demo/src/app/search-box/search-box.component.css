@@ -1,0 +1,12 @@
+
+.search-box-label {
+    color: black;
+}
+
+.search-box-full-width {
+    border: 1px solid rgb(215, 215, 215);
+}
+
+.search-box::placeholder {
+    color: rgb(200, 200, 200);
+}
