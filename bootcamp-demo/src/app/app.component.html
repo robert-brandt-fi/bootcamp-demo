@@ -1,7 +1,7 @@
 <div class="app-container">
   <div class="content-container">
   
-    <h2>Angular Display Data from Json File Example</h2>
+    <h2>Fetch Market Data from EVE Market API</h2>
 
     <table class="table table-condensed table-striped table-hover table-border">
       <thead>
@@ -9,7 +9,7 @@
             <th></th>
             <th>Name</th>
             <th>Volume</th>
-            <th>Wavg</th>
+            <th>Weighted Avg</th>
             <th>Avg</th>
             <th>Min</th>
             <th>Max</th>
@@ -80,7 +80,7 @@
     </table>
 
     <div class="search-box-container">
-      <search-box-component class="search-box"></search-box-component>
+      <search-box-component class="search-box" (name)="makeMarketStatCall($event)"></search-box-component>
     </div>
     
   </div>
