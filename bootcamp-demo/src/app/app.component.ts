@@ -1,10 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from './services/api.service';
-
-import { MarketItem as MarketResponse } from './models/market-stats';
 import { Subject } from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
+import { MarketItem as MarketResponse } from './models/market-stats';
 
 @Component({
   selector: 'app-root',
